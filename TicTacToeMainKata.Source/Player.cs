@@ -7,6 +7,7 @@ namespace TicTacToeMainKata.Source
     public enum Player
     {
         X,
-        O
+        O,
+        DRAW
     }
 }

@@ -158,6 +158,19 @@ namespace TicTacToeMain.Test
             Assert.AreEqual(X, player);
         }
 
+        [Test]
+        public void PlayerOWins_WhenDiagonalFromTopLeft_IsAllO()
+        {
+            ticTacToe.MarkPosition(CenterRight);
+            ticTacToe.MarkPosition(TopLeft);
+            ticTacToe.MarkPosition(TopRight);
+            ticTacToe.MarkPosition(CenterMiddle);
+            ticTacToe.MarkPosition(BottomLeft);
+            ticTacToe.MarkPosition(BottomRight);
 
+            var player = ticTacToe.GetWinner();
+
+            Assert.AreEqual(O, player);
+        }
     }
 }
