@@ -6,6 +6,7 @@ namespace TicTacToeMainKata.Source
 {
     public class TicTacToe
     {
+        Board board = new Board();
         private Player currentPlayer = X;
         public Player GetCurrentPlayer()
         {
@@ -13,7 +14,8 @@ namespace TicTacToeMainKata.Source
         }
 
         public void MarkPosition(Position position)
-        { 
+        {
+            board.playerMoves.Add(position, GetCurrentPlayer());
             SwapPlayers();
         }
 
