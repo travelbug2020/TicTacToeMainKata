@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Threading;
 using static TicTacToeMainKata.Source.Player;
 using static TicTacToeMainKata.Source.Position;
+using System.Linq;
 
 namespace TicTacToeMainKata.Source
 {
@@ -32,94 +36,110 @@ namespace TicTacToeMainKata.Source
 
         public Player GetWinner()
         {
-            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(TopMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(TopRight, out currentPlayer)))
+            var listOfWinningMoves = new WinningPositionWrapper();
+
+            Player actualValue;
+            if (board.playerMoves.TryGetValue(TopLeft, out actualValue) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(TopMiddle, out actualValue) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(TopRight, out actualValue) && actualValue == GetCurrentPlayer())) 
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(CenterRight, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(CenterRight, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopMiddle, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomMiddle, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomMiddle, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterRight, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer) && actualValue == GetCurrentPlayer()))
+            {
+                return currentPlayer;
+            }
+            if (board.playerMoves.TryGetValue(BottomRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(BottomMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
 
+
             SwapPlayers();
             
-            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(TopMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(TopRight, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopLeft, out actualValue) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(TopMiddle, out actualValue) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(TopRight, out actualValue) && actualValue == GetCurrentPlayer())) 
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(CenterRight, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(CenterRight, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopMiddle, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomMiddle, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomMiddle, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterRight, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopLeft, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomRight, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) &&
-                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) &&
-                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer)))
+            if (board.playerMoves.TryGetValue(TopRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(CenterMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer) && actualValue == GetCurrentPlayer()))
             {
                 return currentPlayer;
             }
-            
+            if (board.playerMoves.TryGetValue(BottomRight, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                (board.playerMoves.TryGetValue(BottomMiddle, out currentPlayer) && actualValue == GetCurrentPlayer() &&
+                 board.playerMoves.TryGetValue(BottomLeft, out currentPlayer) && actualValue == GetCurrentPlayer()))
+            {
+                return currentPlayer;
+            }
+
             return DRAW;
 
         }
