@@ -4,9 +4,9 @@ using System.Text;
 using static TicTacToeMainKata.Source.Position;
 
 namespace TicTacToeMainKata.Source
-{  public class WinningPositionWrapper
+{  public class WinningPositions
     {
-        public readonly List<Position[]> winningPositions = new List<Position[]>
+        public readonly List<Position[]> Positions = new List<Position[]>
         {
             new[] {TopLeft, TopMiddle, TopRight},
             new[] {CenterLeft,CenterMiddle,CenterRight},

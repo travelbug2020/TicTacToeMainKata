@@ -8,6 +8,6 @@ namespace TicTacToeMainKata.Source
     {
         X,
         O,
-        DRAW
+        NONE
     }
 }
