@@ -1,4 +1,5 @@
-﻿using static TicTacToeMainKata.Source.Player;
+﻿using System;
+using static TicTacToeMainKata.Source.Player;
 
 namespace TicTacToeMainKata.Source
 {
@@ -14,7 +15,16 @@ namespace TicTacToeMainKata.Source
 
         public void MarkPosition(Position position)
         {
-            _board.MarkAt(position, GetCurrentPlayer());
+            try
+            {
+                _board.MarkAt(position, GetCurrentPlayer());
+
+            }
+            catch (ArgumentException)
+            {
+                return;
+            }
+            
             SwapPlayers();
         }
 

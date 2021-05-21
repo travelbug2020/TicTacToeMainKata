@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TicTacToeMainKata.Source
@@ -27,7 +28,9 @@ namespace TicTacToeMainKata.Source
 
         public void MarkAt(Position position, Player currentPlayer)
         {
+            
             this._board.Add(position, currentPlayer);
+            
         }
     }
 }

@@ -172,5 +172,39 @@ namespace TicTacToeMain.Test
 
             Assert.AreEqual(O, player);
         }
+
+        [Test]
+        public void Draw_WhenAllSquaresAreFilled_ButNoWinner()
+        {
+            ticTacToe.MarkPosition(TopMiddle);
+            ticTacToe.MarkPosition(TopLeft);
+            ticTacToe.MarkPosition(CenterMiddle);
+            ticTacToe.MarkPosition(TopRight);
+            ticTacToe.MarkPosition(CenterRight);
+            ticTacToe.MarkPosition(CenterLeft);
+            ticTacToe.MarkPosition(BottomLeft);
+            ticTacToe.MarkPosition(BottomMiddle);
+            ticTacToe.MarkPosition(BottomRight);
+
+            var player = ticTacToe.GetWinner();
+
+            Assert.AreEqual(NONE, player);
+        }
+
+        [Test]
+        public void PlayerCannot_playOnMarkedPosition_WillGiveThemAnotherChance()
+        {
+            ticTacToe.MarkPosition(CenterRight);
+            ticTacToe.MarkPosition(CenterRight);
+            ticTacToe.MarkPosition(TopLeft);
+            ticTacToe.MarkPosition(TopRight);
+            ticTacToe.MarkPosition(CenterMiddle);
+            ticTacToe.MarkPosition(BottomLeft);
+            ticTacToe.MarkPosition(BottomRight);
+
+            var player = ticTacToe.GetWinner();
+
+            Assert.AreEqual(O, player);
+        }
     }
 }
