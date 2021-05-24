@@ -173,22 +173,17 @@ namespace TicTacToeMain.Test
             Assert.AreEqual(O, player);
         }
 
-        [Test]
-        public void Draw_WhenAllSquaresAreFilled_ButNoWinner()
+        [TestCase(new[] { TopMiddle, TopLeft, CenterMiddle, TopRight, CenterRight, CenterLeft, BottomLeft, BottomMiddle, BottomRight }, NONE)]
+        public void Draw_WhenAllSquaresAreFilled_ButNoWinner(Position[] positions, Player winner)
         {
-            ticTacToe.MarkPosition(TopMiddle);
-            ticTacToe.MarkPosition(TopLeft);
-            ticTacToe.MarkPosition(CenterMiddle);
-            ticTacToe.MarkPosition(TopRight);
-            ticTacToe.MarkPosition(CenterRight);
-            ticTacToe.MarkPosition(CenterLeft);
-            ticTacToe.MarkPosition(BottomLeft);
-            ticTacToe.MarkPosition(BottomMiddle);
-            ticTacToe.MarkPosition(BottomRight);
+            foreach (var position in positions)
+            {
+                ticTacToe.MarkPosition(position);
+            }
 
             var player = ticTacToe.GetWinner();
 
-            Assert.AreEqual(NONE, player);
+            Assert.AreEqual(winner, player);
         }
 
         [Test]
