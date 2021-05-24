@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static TicTacToeMainKata.Source.Player;
 
 namespace TicTacToeMainKata.Source
 {
@@ -8,7 +9,7 @@ namespace TicTacToeMainKata.Source
         private readonly Dictionary<Position, Player> _board = new Dictionary<Position, Player>();
         private readonly WinningPositions _listOfWinningMoves = new WinningPositions();
 
-        private bool IsLineTaken(Position winningPosition1, Position winningPosition2, Position winningPosition3)
+        private bool IsAWinningLine(Position winningPosition1, Position winningPosition2, Position winningPosition3)
         {
             return _board.ContainsKey(winningPosition1) && _board.ContainsKey(winningPosition2) &&
                    _board.ContainsKey(winningPosition3) && _board[winningPosition1] == _board[winningPosition2] &&
@@ -17,19 +18,18 @@ namespace TicTacToeMainKata.Source
 
         public Player GetWinner()
         {
-            foreach (var winningMoves in _listOfWinningMoves.Positions.Where(winningMoves => IsLineTaken(winningMoves[0], winningMoves[1], winningMoves[2])))
+            var winningLine = _listOfWinningMoves.Positions.FirstOrDefault(winningMoves =>
+                IsAWinningLine(winningMoves[0], winningMoves[1], winningMoves[2]));
+            if (winningLine == null)
             {
-                return _board[winningMoves[0]];
+                return NONE;
             }
-
-            return Player.NONE;
+            return _board[winningLine[0]];
         }
 
         public void MarkAt(Position position, Player currentPlayer)
         {
-
-            this._board.Add(position, currentPlayer);
-
+            _board.Add(position, currentPlayer);
         }
     }
 }
