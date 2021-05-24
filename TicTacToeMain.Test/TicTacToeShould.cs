@@ -176,14 +176,19 @@ namespace TicTacToeMain.Test
         [TestCase(new[] { TopMiddle, TopLeft, CenterMiddle, TopRight, CenterRight, CenterLeft, BottomLeft, BottomMiddle, BottomRight }, NONE)]
         public void Draw_WhenAllSquaresAreFilled_ButNoWinner(Position[] positions, Player winner)
         {
-            foreach (var position in positions)
-            {
-                ticTacToe.MarkPosition(position);
-            }
+            PlayMovesAt(positions);
 
             var player = ticTacToe.GetWinner();
 
             Assert.AreEqual(winner, player);
+        }
+
+        private void PlayMovesAt(Position[] positions)
+        {
+            foreach (var position in positions)
+            {
+                ticTacToe.MarkPosition(position);
+            }
         }
 
         [Test]
