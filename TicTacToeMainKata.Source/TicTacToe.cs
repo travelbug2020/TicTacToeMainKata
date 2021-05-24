@@ -18,14 +18,12 @@ namespace TicTacToeMainKata.Source
             try
             {
                 _board.MarkAt(position, GetCurrentPlayer());
-                
-
             }
             catch (ArgumentException)
             {
                 return;
             }
-            
+
             SwapPlayers();
         }
 

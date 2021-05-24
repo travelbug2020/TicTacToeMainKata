@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using static TicTacToeMainKata.Source.Position;
 
 namespace TicTacToeMainKata.Source
-{  public class WinningPositions
+{
+    public class WinningPositions
     {
         public readonly List<Position[]> Positions = new List<Position[]>
         {

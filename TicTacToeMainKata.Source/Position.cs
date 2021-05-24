@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TicTacToeMainKata.Source
+﻿namespace TicTacToeMainKata.Source
 {
     public enum Position
     {
